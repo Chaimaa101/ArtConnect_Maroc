@@ -12,7 +12,7 @@ export default function Layout() {
         </h1>
 
         <ul className="hidden md:flex space-x-8 font-semibold text-gray-500">
-          <li><a href="/home" className="hover:text-[#895525]">Accueil</a></li>
+          <li><a href="/" className="hover:text-[#895525]">Accueil</a></li>
           <li><a href="/about" className="hover:text-[#895525]">À propos</a></li>
           <li><a href="/publier" className="hover:text-[#895525]">Publier</a></li>
           <li><a href="/admin" className="hover:text-[#895525]">Admin</a></li>

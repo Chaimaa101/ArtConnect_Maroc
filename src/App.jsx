@@ -2,8 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Layout from "./Pages/Layout"
 import Home from "./Pages/Home"
 import Admin from "./Pages/Admin"
-import Publier from "./Pages/Publier"
-
+import Details from "./Pages/Details"
 function App() {
   return (
     <>
@@ -12,8 +11,8 @@ function App() {
         <Route path="/" element = {<Layout />}>
           <Route index element={<Home/>}/>
           <Route path="/admin" element={<Admin />}/>
-          <Route path="/publier" element={<Publier />}/>
           <Route path="/about" element={<Admin />}/>
+          <Route path="/details/:id" element={<Details />}/>
         </Route>
       </Routes>
     </BrowserRouter>

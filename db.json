@@ -1,0 +1,123 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "nom": "Gastronomie",
+      "image": "https://source.unsplash.com/random/300x200?food",
+      "description": "Cuisine marocaine, plats traditionnels et pâtisseries"
+    },
+    {
+      "id": 2,
+      "nom": "Artisanat",
+      "image": "https://source.unsplash.com/random/300x200?handmade",
+      "description": "Objets artisanaux et savoir-faire traditionnels"
+    },
+    {
+      "id": 3,
+      "nom": "Habits",
+      "image": "https://source.unsplash.com/random/300x200?clothes",
+      "description": "Caftans, djellabas et habits traditionnels"
+    },
+    {
+      "id": 4,
+      "nom": "Architecture",
+      "image": "https://source.unsplash.com/random/300x200?architecture",
+      "description": "Monuments et bâtiments traditionnels marocains"
+    },
+    {
+      "id": 5,
+      "nom": "Musique & Danse",
+      "image": "https://source.unsplash.com/random/300x200?music",
+      "description": "Musique gnawa, chaâbi et danses traditionnelles"
+    }
+  ],
+
+  "oeuvres": [
+    {
+      "id": 1,
+      "titre": "Couscous Royal",
+      "description": "Plat traditionnel servi dans les grandes occasions",
+      "image": "https://source.unsplash.com/random/300x200?couscous",
+      "ville": "Marrakech",
+      "categorieId": 1
+    },
+    {
+      "id": 2,
+      "titre": "Tajine aux pruneaux",
+      "description": "Spécialité de la cuisine marocaine",
+      "image": "https://source.unsplash.com/random/300x200?tajine",
+      "ville": "Fès",
+      "categorieId": 4
+    },
+    {
+      "id": 3,
+      "titre": "Tapis berbère",
+      "description": "Un tapis coloré typique de l’Atlas",
+      "image": "https://source.unsplash.com/random/300x200?carpet",
+      "ville": "Meknès",
+      "categorieId": 2
+    },
+    {
+      "id": 4,
+      "titre": "Caftan traditionnel",
+      "description": "Caftan marocain brodé à la main",
+      "image": "https://source.unsplash.com/random/300x200?caftan",
+      "ville": "Rabat",
+      "categorieId": 3
+    },
+    {
+      "id": 5,
+      "titre": "Mosquée Hassan II",
+      "description": "Chef-d'œuvre architectural de Casablanca",
+      "image": "https://source.unsplash.com/random/300x200?mosque",
+      "ville": "Casablanca",
+      "categorieId": 4
+    },
+    {
+      "id": 6,
+      "titre": "Gnawa Music",
+      "description": "Musique spirituelle et traditionnelle du Maroc",
+      "image": "https://source.unsplash.com/random/300x200?gnawa",
+      "ville": "Essaouira",
+      "categorieId": 5
+    }
+  ],
+
+  "evenements": [
+    {
+      "id": 1,
+      "titre": "Festival du film de Marrakech",
+      "image": "https://source.unsplash.com/random/300x200?festival",
+      "date": "2025-12-05",
+      "ville": "Marrakech"
+    },
+    {
+      "id": 2,
+      "titre": "Festival Gnaoua et Musiques du Monde",
+      "image": "https://source.unsplash.com/random/300x200?concert",
+      "date": "2025-06-20",
+      "ville": "Essaouira"
+    }
+  ],
+
+  "artisans": [
+    {
+      "id": 1,
+      "nom": "Chaimaa Afkir",
+      "image": "https://source.unsplash.com/random/300x200?artisan",
+      "description": "Maître artisan spécialisé en poterie traditionnelle"
+    },
+    {
+      "id": 2,
+      "nom": "Latifa ouamou",
+      "image": "https://source.unsplash.com/random/300x200?woman",
+      "description": "Créatrice de bijoux en argent et pierres précieuses"
+    },
+    {
+      "id": 3,
+      "nom": "Khadija Bouheria",
+      "image": "https://source.unsplash.com/random/300x200?weaver",
+      "description": "Fabricant de tapis berbères de l’Atlas"
+    }
+  ]
+}
