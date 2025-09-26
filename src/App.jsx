@@ -3,6 +3,10 @@ import Layout from "./Pages/Layout"
 import Home from "./Pages/Home"
 import Admin from "./Pages/Admin"
 import Publier from "./Pages/Publier"
+import Apropos from "./Pages/Apropos"
+import Favoris from "./Pages/Favoris"
+
+
 
 function App() {
   return (
@@ -13,7 +17,9 @@ function App() {
           <Route index element={<Home/>}/>
           <Route path="/admin" element={<Admin />}/>
           <Route path="/publier" element={<Publier />}/>
-          <Route path="/about" element={<Admin />}/>
+          <Route path="/Admin" element={<Admin />}/>
+          <Route path="/About" element={<Apropos/>}/>
+           <Route path="/favoris" element={<Favoris/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
@@ -21,5 +27,6 @@ function App() {
     </>
   )
 }
+
 
 export default App

@@ -16,6 +16,7 @@ export default function Layout() {
           <li><a href="/about" className="hover:text-[#895525]">À propos</a></li>
           <li><a href="/publier" className="hover:text-[#895525]">Publier</a></li>
           <li><a href="/admin" className="hover:text-[#895525]">Admin</a></li>
+          <li><a href="/Favoris" className="hover:text-[#895525]">Favoris</a></li>
         </ul>
 
 
