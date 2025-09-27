@@ -9,7 +9,7 @@ export default function Search() {
         <div className="flex items-center bg-[#ead0ad] rounded-full px-4 py-2 w-[350px]">
           <input
             type="text"
-            placeholder="Search ..."
+            placeholder="Cherche ..."
             className="bg-transparent outline-none w-full text-[#763613] placeholder-white"
           />
            <FaSearch className='text-[#763613] ' size={18}/>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-function PublierOeuvre() {
+function Publier() {
   const [titre, setTitre] = useState("");
   const [categorie, setCategorie] = useState("");
   const [region, setRegion] = useState("");
@@ -45,10 +45,10 @@ function PublierOeuvre() {
         className="bg-white shadow-xl rounded-2xl p-6 w-[400px] border"
       >
         <h2 className="text-center text-2xl font-bold text-red-700 mb-4">
-          Publier une œuvre ou artisanat
+          Publier une œuvre 
         </h2>
 
-        {/* Champ titre */}
+  
         <input
           type="text"
           placeholder="Titre de l'œuvre"
@@ -57,7 +57,6 @@ function PublierOeuvre() {
           className="w-full p-2 border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-red-400"
         />
 
-        {/* Catégorie */}
         <select
           value={categorie}
           onChange={(e) => setCategorie(e.target.value)}
@@ -70,7 +69,6 @@ function PublierOeuvre() {
           <option value="Bijoux">Bijoux</option>
         </select>
 
-        {/* Région */}
         <input
           type="text"
           placeholder="Région/Ville"
@@ -79,14 +77,11 @@ function PublierOeuvre() {
           className="w-full p-2 border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-red-400"
         />
 
-        {/* Upload image */}
         <input
           type="file"
           onChange={handleImageChange}
           className="w-full p-2 border rounded-lg mb-3"
         />
-
-        {/* Preview image */}
         {image && (
           <div className="mb-3">
             <img
@@ -97,7 +92,6 @@ function PublierOeuvre() {
           </div>
         )}
 
-        {/* Bouton Publier */}
         <button
           type="submit"
           className="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition"
@@ -109,4 +103,4 @@ function PublierOeuvre() {
   );
 }
 
-export default PublierOeuvre;
+export default Publier

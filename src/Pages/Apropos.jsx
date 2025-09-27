@@ -1,4 +1,4 @@
-import { FaBullseye, FaCalendarAlt, FaSave, FaHistory, FaLightbulb, FaUsers } from "react-icons/fa";
+import { FaBullseye, FaCalendarAlt, FaSave, FaHistory, FaLightbulb, FaUsers, FaInfo } from "react-icons/fa";
 
 export default function Apropos() {
   return (
@@ -8,10 +8,9 @@ export default function Apropos() {
           À propos d'ArtConnect Maroc
         </h1>
 
-        {/* Notre mission */}
         <section className="bg-white rounded-2xl shadow p-6 mb-6 border">
           <div className="flex gap-4 items-start">
-            <FaBullseye className="text-3xl text-[#895525] mt-1" />
+            <FaInfo className="text-xl text-[#895525] mt-1" />
             <div>
               <h2 className="text-xl font-semibold text-[#763613] mb-2">Notre mission</h2>
               <p className="text-gray-600 leading-relaxed">
@@ -22,8 +21,7 @@ export default function Apropos() {
             </div>
           </div>
         </section>
-
-        {/* Ce que vous pouvez faire */}
+        
         <section className="mb-6">
           <h3 className="text-lg font-semibold text-[#763613] mb-4">Ce que vous pouvez faire</h3>
 
