@@ -1,50 +1,111 @@
-import { useState } from "react"  
-import { FaCloudUploadAlt } from "react-icons/fa"  
-import { IoClose } from "react-icons/io5"  
+import React, { useState, useEffect, useContext } from "react";
+import { FaCloudUploadAlt } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
+import { Context } from "../Context/ContextGenerale";
 
-export default function AddOeuvre({ isOpen, onClose, initialData = {} }) {
-  const [title, setTitle] = useState(initialData.title || "")  
-  const [ville, setVille] = useState(initialData.ville || "")  
-  const [description, setDescription] = useState(initialData.description || "")  
-  const [category, setCategory] = useState(initialData.category || "")  
-  const [image, setImage] = useState(initialData.image || null)  
+export default function AddOeuvre({ isOpen, onClose }) {
+  const { closeModal, ajouter,modifier,selectedData } = useContext(Context);
+  const [formData, setFormData] = useState({
+     titre: "",
+    ville: "",
+    description: "",
+    category: "",
+    image: null
+  });
+  const [imagePreview, setImagePreview] = useState("");
 
-  if (!isOpen) return null  
+  // Reset form when modal opens/closes or selectedData changes
+  useEffect(() => {
+    if (isOpen) {
+      if (selectedData.id) {
+        setFormData({
+           titre: selectedData. titre || "",
+          ville: selectedData.ville || "",
+          description: selectedData.description || "",
+          category: selectedData.category || "",
+          image: null
+        });
+        setImagePreview(selectedData.image || "");
+      } else {
+        setFormData({
+           titre: "",
+          ville: "",
+          description: "",
+          category: "",
+          image: null
+        });
+        setImagePreview("");
+      }
+    }
+  }, [isOpen, selectedData]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault()  
-    console.log({ title, ville, category, description, image })  
-    onClose()  
-  }  
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFormData(prev => ({ ...prev, image: file }));
+      setImagePreview(URL.createObjectURL(file));
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    const submitData = new FormData();
+    submitData.append(" titre", formData. titre);
+    submitData.append("ville", formData.ville);
+    submitData.append("description", formData.description);
+    submitData.append("category", formData.category);
+    if (formData.image) {
+      submitData.append("image", formData.image);
+    }
+    if (selectedData.id) {
+      submitData.append("id", selectedData.id);
+    }
+
+  
+  if(selectedData == null){
+    await ajouter('oeuvres',submitData)
+  }else{
+    await modifier('oeuvres',submitData, selectedData.id)
+  }
+}
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="absolute inset-0 bg-black opacity-50"></div>
+      <div className="absolute inset-0 bg-black opacity-50" onClick={closeModal}></div>
 
-      <div className="bg-white rounded-xl shadow-lg w-full max-w-lg h-[80vh] p-6 relative overflow-y-auto scrollbar-thin scrollbar-thumb-[#764613] scrollbar-track-[#f5e7d0]">
-
+      <div className="bg-white rounded-xl shadow-lg w-full max-w-lg max-h-[90vh] p-6 relative overflow-y-auto scrollbar-thin scrollbar-thumb-[#764613] scrollbar-track-[#f5e7d0]">
         <button
-          onClick={onClose}
+          onClick={closeModal}
           className="absolute top-3 right-3 text-gray-700 hover:text-red-500"
         >
           <IoClose size={24} />
         </button>
 
         <h2 className="text-xl font-bold text-[#764613] mb-4">
-          {initialData.id ? "Modifier l’œuvre" : "Ajouter une œuvre"}
+          {selectedData.id ? "Modifier l'œuvre" : "Ajouter une œuvre"}
         </h2>
 
-        <form className="space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label className="block text-[#764613] font-semibold mb-2">
               Titre <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
+              name=" titre"
               placeholder="Ajouter un titre"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-[#764613] bg-[#e7c79e]"
+              value={formData. titre}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-[#764613]"
             />
           </div>
 
@@ -54,10 +115,12 @@ export default function AddOeuvre({ isOpen, onClose, initialData = {} }) {
             </label>
             <input
               type="text"
+              name="ville"
               placeholder="Ajouter une ville"
-              value={ville}
-              onChange={(e) => setVille(e.target.value)}
-              className="w-full px-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-[#764613] bg-[#e7c79e]"
+              value={formData.ville}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-[#764613]"
             />
           </div>
 
@@ -66,11 +129,13 @@ export default function AddOeuvre({ isOpen, onClose, initialData = {} }) {
               Catégorie <span className="text-red-500">*</span>
             </label>
             <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="w-full px-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-[#764613] bg-[#e7c79e]"
+              name="category"
+              value={formData.category}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-[#764613]"
             >
-              <option value="">Sélectionner catégorie</option>
+              <option value="">Sélectionner une catégorie</option>
               <option value="peinture">Peinture</option>
               <option value="sculpture">Sculpture</option>
               <option value="artisanat">Artisanat</option>
@@ -83,36 +148,47 @@ export default function AddOeuvre({ isOpen, onClose, initialData = {} }) {
             </label>
             <textarea
               rows="4"
+              name="description"
               placeholder="Ajouter une description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="w-full px-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-[#764613] bg-[#e7c79e]"
+              value={formData.description}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-[#764613]"
             ></textarea>
           </div>
 
           <div>
             <label className="block text-[#764613] font-semibold mb-2">
-              Image <span className="text-red-500">*</span>
+              Image {!selectedData.id && <span className="text-red-500">*</span>}
             </label>
-            <div className="w-full flex flex-col items-center justify-center border-2 border-dashed border-[#764613] bg-[#e7c79e] rounded-md py-8 cursor-pointer">
-              <FaCloudUploadAlt size={40} className="text-[#764613]" />
-              <p className="mt-2 text-sm text-[#764613]">Choisir une image</p>
+            <label className="w-full flex flex-col items-center justify-center border-2 border-dashed border-[#764613] bg-gray-50 rounded-md py-4 cursor-pointer hover:bg-gray-100">
+              <FaCloudUploadAlt size={30} className="text-[#764613]" />
+              <p className="mt-2 text-sm text-[#764613]">
+                {imagePreview ? "Image sélectionnée" : "Choisir une image"}
+              </p>
               <input
                 type="file"
-                onChange={(e) => setImage(e.target.files[0])}
+                accept="image/*"
+                onChange={handleImageChange}
                 className="hidden"
+                required={!selectedData.id}
               />
-            </div>
+            </label>
+            {imagePreview && (
+              <div className="mt-2">
+                <img src={imagePreview} alt="Preview" className="h-20 object-cover rounded" />
+              </div>
+            )}
           </div>
 
           <button
             type="submit"
-            className="w-full py-2 rounded-md bg-[#764613] text-white font-semibold hover:bg-[#895525]"
+            className="w-full py-3 rounded-md bg-[#764613] text-white font-semibold hover:bg-[#895525] transition-colors"
           >
-            {initialData.id ? "Mettre à jour" : "Publier"}
+            {selectedData.id ? "Mettre à jour" : "Publier"}
           </button>
         </form>
       </div>
     </div>
-  )  
+  );
 }

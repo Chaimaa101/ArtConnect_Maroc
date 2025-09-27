@@ -3,13 +3,13 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 import { Context } from '../Context/ContextGenerale'
 
 function Bartitre({title ,children,role}) {
-  const {handleOpenModal} = useContext(Context)
+  const {openModalWithData} = useContext(Context)
   return (
     <>
       <div className="bg-[#ead0ad] text-[#763613] text-lg  px-6 py-3 mt-10 rounded-full flex items-center gap-4">
               <h1>{title}</h1>
               {role ? <div className="ml-auto flex gap-2">
-                <button className='p-2 px-5 bg-[#763613] text-white rounded-full'  onClick={handleOpenModal}>Ajouter</button>
+                <button className='p-2 px-5 bg-[#763613] text-white rounded-full'  onClick={openModalWithData}>Ajouter</button>
               </div>
               :
               <div className="ml-auto flex gap-2">
