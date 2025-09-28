@@ -4,35 +4,34 @@ import { IoClose } from "react-icons/io5";
 import { Context } from "../Context/ContextGenerale";
 
 export default function AddOeuvre({ isOpen, onClose }) {
-  const { closeModal, ajouter,modifier,selectedData } = useContext(Context);
+  const { closeModal, ajouter, modifier, selectedData } = useContext(Context);
   const [formData, setFormData] = useState({
-     titre: "",
+    titre: "",
     ville: "",
     description: "",
     category: "",
-    image: null
+    image: null,
   });
   const [imagePreview, setImagePreview] = useState("");
 
-  // Reset form when modal opens/closes or selectedData changes
   useEffect(() => {
     if (isOpen) {
-      if (selectedData.id) {
+      if (selectedData?.id) {
         setFormData({
-           titre: selectedData. titre || "",
+          titre: selectedData.titre || "",
           ville: selectedData.ville || "",
           description: selectedData.description || "",
           category: selectedData.category || "",
-          image: null
+          image: null,
         });
         setImagePreview(selectedData.image || "");
       } else {
         setFormData({
-           titre: "",
+          titre: "",
           ville: "",
           description: "",
           category: "",
-          image: null
+          image: null,
         });
         setImagePreview("");
       }
@@ -41,45 +40,44 @@ export default function AddOeuvre({ isOpen, onClose }) {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setFormData(prev => ({ ...prev, image: file }));
+      setFormData((prev) => ({ ...prev, image: file }));
       setImagePreview(URL.createObjectURL(file));
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const submitData = new FormData();
-    submitData.append(" titre", formData. titre);
-    submitData.append("ville", formData.ville);
-    submitData.append("description", formData.description);
-    submitData.append("category", formData.category);
-    if (formData.image) {
-      submitData.append("image", formData.image);
-    }
-    if (selectedData.id) {
-      submitData.append("id", selectedData.id);
-    }
 
-  
-  if(selectedData == null){
-    await ajouter('oeuvres',submitData)
-  }else{
-    await modifier('oeuvres',submitData, selectedData.id)
-  }
-}
+    const submitData = {
+      titre: formData.titre,
+      ville: formData.ville,
+      description: formData.description,
+      category: formData.category,
+      image: imagePreview,
+      id: selectedData?.id || undefined,
+    };
+
+    if (selectedData == null) {
+      await ajouter("oeuvres", submitData);
+    } else {
+      await modifier("oeuvres", submitData, selectedData?.id);
+    }
+  };
 
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="absolute inset-0 bg-black opacity-50" onClick={closeModal}></div>
+      <div
+        className="absolute inset-0 bg-black opacity-50"
+        onClick={closeModal}
+      ></div>
 
       <div className="bg-white rounded-xl shadow-lg w-full max-w-lg max-h-[90vh] p-6 relative overflow-y-auto scrollbar-thin scrollbar-thumb-[#764613] scrollbar-track-[#f5e7d0]">
         <button
@@ -90,7 +88,7 @@ export default function AddOeuvre({ isOpen, onClose }) {
         </button>
 
         <h2 className="text-xl font-bold text-[#764613] mb-4">
-          {selectedData.id ? "Modifier l'œuvre" : "Ajouter une œuvre"}
+          {selectedData?.id ? "Modifier l'œuvre" : "Ajouter une œuvre"}
         </h2>
 
         <form className="space-y-4" onSubmit={handleSubmit}>
@@ -100,9 +98,9 @@ export default function AddOeuvre({ isOpen, onClose }) {
             </label>
             <input
               type="text"
-              name=" titre"
+              name="titre"
               placeholder="Ajouter un titre"
-              value={formData. titre}
+              value={formData.titre}
               onChange={handleInputChange}
               required
               className="w-full px-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-[#764613]"
@@ -156,36 +154,46 @@ export default function AddOeuvre({ isOpen, onClose }) {
               className="w-full px-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-[#764613]"
             ></textarea>
           </div>
-
           <div>
-            <label className="block text-[#764613] font-semibold mb-2">
-              Image {!selectedData.id && <span className="text-red-500">*</span>}
+            <label
+              htmlFor="imageUpload"
+              className="w-full flex flex-col items-center justify-center border-2 border-dashed rounded-md py-4 cursor-pointer"
+            >
+              {imagePreview ? (
+                <div className="flex flex-col items-center">
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
+                    className="w-full h-48 object-cover rounded-lg shadow-md mb-2"
+                  />
+                  <span className="text-[#763613]">Image sélectionnée</span>
+                </div>
+              ) : (
+                <div className="flex flex-col items-center">
+                  <FaCloudUploadAlt size={30} className="text-[#763613] mb-2" />
+                  <span className="text-[#763613] font-medium">
+                    Cliquez pour choisir une image
+                  </span>
+                  <span className="text-gray-500 text-sm mt-1">
+                    Formats supportés: JPG, PNG, GIF
+                  </span>
+                </div>
+              )}
             </label>
-            <label className="w-full flex flex-col items-center justify-center border-2 border-dashed border-[#764613] bg-gray-50 rounded-md py-4 cursor-pointer hover:bg-gray-100">
-              <FaCloudUploadAlt size={30} className="text-[#764613]" />
-              <p className="mt-2 text-sm text-[#764613]">
-                {imagePreview ? "Image sélectionnée" : "Choisir une image"}
-              </p>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
-                className="hidden"
-                required={!selectedData.id}
-              />
-            </label>
-            {imagePreview && (
-              <div className="mt-2">
-                <img src={imagePreview} alt="Preview" className="h-20 object-cover rounded" />
-              </div>
-            )}
+            <input
+              id="imageUpload"
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="hidden"
+              required={!selectedData?.id}
+            />
           </div>
-
           <button
             type="submit"
             className="w-full py-3 rounded-md bg-[#764613] text-white font-semibold hover:bg-[#895525] transition-colors"
           >
-            {selectedData.id ? "Mettre à jour" : "Publier"}
+            {selectedData?.id ? "Mettre à jour" : "Publier"}
           </button>
         </form>
       </div>

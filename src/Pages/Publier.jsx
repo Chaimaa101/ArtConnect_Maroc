@@ -1,106 +1,123 @@
-import { useState } from "react";
-import axios from "axios";
+import { useContext, useState } from "react";
+import { Context } from "../Context/ContextGenerale";
+import { FaCloudArrowDown } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 function Publier() {
+  const { categories, ajouter } = useContext(Context);
   const [titre, setTitre] = useState("");
   const [categorie, setCategorie] = useState("");
-  const [region, setRegion] = useState("");
+  const [ville, setville] = useState("");
   const [image, setImage] = useState(null);
 
+  const navigate = useNavigate()
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!titre || !categorie || !region || !image) {
+    if (!titre || !categorie || !ville || !image) {
       alert("Merci de remplir tous les champs !");
       return;
     }
+ const newOeuvre = {
+    titre,
+    categorieId: parseInt(categorie), 
+    ville,
+    image,
+  };
 
-    try {
-      await axios.post("http://localhost:3000/oeuvres", {
-        titre,
-        categorie,
-        region,
-        image: URL.createObjectURL(image), // preview en base
-      });
-
-      alert("Œuvre publiée avec succès !");
-      setTitre("");
-      setCategorie("");
-      setRegion("");
-      setImage(null);
-    } catch (error) {
-      console.error("Erreur lors de la publication :", error);
-      alert("Erreur de publication");
-    }
+    await ajouter("oeuvres", newOeuvre)
+    navigate("/")
   };
 
   return (
-    <div className="flex justify-center items-center py-16  from-yellow-50 to-red-100 min-h-[calc(100vh-200px)]">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white shadow-xl rounded-2xl p-6 w-[400px] border"
-      >
-        <h2 className="text-center text-2xl font-bold text-red-700 mb-4">
-          Publier une œuvre 
-        </h2>
-
   
-        <input
-          type="text"
-          placeholder="Titre de l'œuvre"
-          value={titre}
-          onChange={(e) => setTitre(e.target.value)}
-          className="w-full p-2 border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-red-400"
-        />
-
-        <select
-          value={categorie}
-          onChange={(e) => setCategorie(e.target.value)}
-          className="w-full p-2 border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-red-400"
+      <div className="flex justify-center items-center my-12">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md border border-gray-200"
         >
-          <option value="">Sélectionnez une catégorie</option>
-          <option value="Poterie">Poterie</option>
-          <option value="Tapis">Tapis</option>
-          <option value="Bois">Travail du bois</option>
-          <option value="Bijoux">Bijoux</option>
-        </select>
+          <h2 className="text-center text-2xl font-bold text-[#763613] mb-6">
+            Publier une œuvre
+          </h2>
 
-        <input
-          type="text"
-          placeholder="Région/Ville"
-          value={region}
-          onChange={(e) => setRegion(e.target.value)}
-          className="w-full p-2 border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-red-400"
-        />
-
-        <input
-          type="file"
-          onChange={handleImageChange}
-          className="w-full p-2 border rounded-lg mb-3"
-        />
-        {image && (
-          <div className="mb-3">
-            <img
-              src={URL.createObjectURL(image)}
-              alt="Preview"
-              className="w-full h-48 object-cover rounded-lg shadow-md"
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Titre de l'œuvre"
+              value={titre}
+              onChange={(e) => setTitre(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#763613]"
             />
           </div>
-        )}
 
-        <button
-          type="submit"
-          className="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition"
-        >
-          Publier
-        </button>
-      </form>
-    </div>
+          <div className="mb-4">
+            <select
+              value={categorie}
+              onChange={(e) => setCategorie(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#763613]"
+            >
+              <option value="">Sélectionnez une catégorie</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.nom}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Région/Ville"
+              value={ville}
+              onChange={(e) => setville(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#763613]"
+            />
+          </div>
+
+          <div className="mb-6">
+            <label
+              htmlFor="imageUpload"
+              className="block w-full cursor-pointer border-2 border-dashed border-[#763613] rounded-lg p-4 text-center hover:bg-red-50 transition"
+            >
+              {image ? (
+                <div className="flex flex-col items-center">
+                  <img
+                    src={URL.createObjectURL(image)}
+                    alt="Preview"
+                    className="w-full h-48 object-cover rounded-lg shadow-md mb-2"
+                  />
+                  <span className="text-[#763613]">Image sélectionnée</span>
+                </div>
+              ) : (
+                <div className="flex flex-col items-center">
+                 <FaCloudArrowDown />
+                  <span className="text-[#763613] font-medium">Cliquez pour choisir une image</span>
+                  <span className="text-gray-500 text-sm mt-1">Formats supportés: JPG, PNG, GIF</span>
+                </div>
+              )}
+            </label>
+            <input
+              id="imageUpload"
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="hidden"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-[#763613] text-white py-3 rounded-lg hover:bg-[#763613] transition font-medium text-lg"
+          >
+            Publier
+          </button>
+        </form>
+        </div>
   );
 }
 
-export default Publier
+export default Publier;
