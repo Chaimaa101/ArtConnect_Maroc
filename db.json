@@ -7,12 +7,6 @@
       "description": "Cuisine marocaine, plats traditionnels et pâtisseries"
     },
     {
-      "id": "2",
-      "nom": "Artisanat",
-      "image": "blob:http://localhost:5173/ffede4bd-5203-483e-ab90-e08b7a2b088d",
-      "description": "Objets artisanaux et savoir-faire traditionnels"
-    },
-    {
       "id": "3",
       "nom": "Habits",
       "image": "src/assets/image3.jpg",
@@ -97,7 +91,7 @@
     {
       "id": "50dc",
       "titre": "HOOOLA",
-      "ville": "JLQDJFJQ",
+      "ville": "guerssif",
       "description": "JQLDJICEFCOQZEFUIOZIZSR",
       "category": "peinture",
       "image": "blob:http://localhost:5173/2aac88d2-4caa-4bb6-8b1b-fa2353c886dc"
