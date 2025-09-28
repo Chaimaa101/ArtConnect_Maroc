@@ -66,10 +66,12 @@ export default function Card({ data, isAdmin = false, section }) {
             </button>
           </>
         ) : (
-          <FaHeart
-            className="text-[#764613] cursor-pointer hover:text-[#895525]"
-            onClick={() => addToFavoris(data)}
-          />
+          <button
+                         onClick={() => addToFavoris(data)}
+                         className="bg-[#763613] text-white px-4 py-2 rounded-lg hover:bg-[#9A5B2D] transition float-right mb-2"
+                       >
+                         <FaHeart />
+                       </button>
         )}
       </div>
     </div>

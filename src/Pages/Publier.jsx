@@ -39,9 +39,10 @@ function Publier() {
           onSubmit={handleSubmit}
           className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md border border-gray-200"
         >
-          <h2 className="text-center text-2xl font-bold text-[#763613] mb-6">
+          <h1 className="text-center text-2xl text-[#763613] mb-6">
             Publier une œuvre
-          </h2>
+          </h1>
+           <hr className="text-[#9A5B2D] mb-10"/>
 
           <div className="mb-4">
             <input

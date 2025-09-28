@@ -1,12 +1,13 @@
 import { useContext, useState } from "react";
-import { FaTrash } from "react-icons/fa";
+import { FaHeartBroken } from "react-icons/fa";
 import { Context } from "../Context/ContextGenerale";
 
 function Favoris() {
   const {favoris,supprimerFavoris } = useContext(Context)
   return (
     <div className="py-12 px-6  min-h-screen">
-      <h2 className="text-2xl font-bold text-red-700 mb-6">Vos favoris</h2>
+      <h1 className="text-2xl font-bold text-[#9A5B2D] mb-6 text-center">Vos favoris</h1>
+      <hr className="text-[#9A5B2D] mb-10"/>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {favoris.map((item) => (
@@ -30,7 +31,7 @@ function Favoris() {
                 onClick={() => supprimerFavoris(item.id)}
                 className="bg-[#763613] text-white px-4 py-2 rounded-lg hover:bg-[#9A5B2D] transition float-right mb-2"
               >
-                <FaTrash />
+                <FaHeartBroken />
               </button>
             </div>
           </div>
