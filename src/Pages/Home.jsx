@@ -17,30 +17,47 @@ export default function Home() {
           className="max-w-4xl"
         />
       </div>
+
       <div className="mb-10">
-        <Bartitre title="Categories" role={false}>
-          {categories.map((data) => (
-            <Card key={data.id} data={data} section="categories"/>
-          ))}
-        </Bartitre>
+        <Bartitre
+          title="Categories"
+          items={categories}
+          renderItem={(data) => (
+            <Card key={data.id} data={data} section="categories" />
+          )}
+        />
 
-        <Bartitre title="A la lune" role={false}>
-          {oeuvres.map((data) => (
-            <Card key={data.id} data={data} section="oeuvres"/>
-          ))}
-        </Bartitre>
+        <Bartitre
+          title="À la une"
+          items={oeuvres.map((oeuvre) => {
+            const category = categories.find(
+              (cat) => cat.id == oeuvre.categorieId
+            );
+            return {
+              ...oeuvre,
+              categorieNom: category ? category.nom : "Sans catégorie",
+            };
+          })}
+          renderItem={(data) => (
+            <Card key={data.id} data={data} section="oeuvres" />
+          )}
+        />
 
-        <Bartitre title="Evénements à venir" role={false}>
-          {evenements.map((data) => (
-            <Card key={data.id} data={data} section="oeuvres"/>
-          ))}
-        </Bartitre>
+        <Bartitre
+          title="Événements à venir"
+          items={evenements}
+          renderItem={(data) => (
+            <Card key={data.id} data={data} section="evenements" />
+          )}
+        />
 
-        <Bartitre title="Artisan du mois" role={false}>
-          {artisans.map((data) => (
-            <Card key={data.id} data={data} section="artisans"/>
-          ))}
-        </Bartitre>
+        <Bartitre
+          title="Artisan du mois"
+          items={artisans}
+          renderItem={(data) => (
+            <Card key={data.id} data={data} section="artisans" />
+          )}
+        />
       </div>
     </>
   );

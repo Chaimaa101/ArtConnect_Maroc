@@ -13,7 +13,7 @@ function Details() {
   if (type === "artisans") collection = artisans;
   if (type === "oeuvres") collection = oeuvres;
 
-  const item = collection.find((obj) => obj.id === parseInt(id));
+  const item = collection.find((obj) => obj.id == parseInt(id));
 
   if (collection.length === 0) {
     return <p className="text-center mt-10">Chargement...</p>;
@@ -34,7 +34,7 @@ function Details() {
       <div className="flex flex-col justify-between">
         <div>
           <h2 className="text-2xl font-semibold text-gray-800">
-            {item.nom || item. titre || item.titre}
+            {item.nom || item. titre }
           </h2>
           {item.ville && <p className="text-[#9A5B2D] font-semibold ">{item.ville}</p>}
           {item.date && <p className="mt-2">📅 {item.date}</p>}
@@ -44,7 +44,7 @@ function Details() {
           </p>
         </div>
 
-        <button onClick={() => addToFavoris(item)} className="mt-6 inline-flex items-center gap-2 border border-[#9A5B2D] text-[#9A5B2D] px-4 py-2 rounded-full text-sm font-medium hover:bg-[#9A5B2D] hover:text-white transition">
+        <button onClick={() => addToFavoris(item)} className="mt-6 w-40  inline-flex items-center gap-2 border border-[#9A5B2D] text-[#9A5B2D] px-4 py-2 rounded-full text-sm font-medium hover:bg-[#9A5B2D] hover:text-white transition-colors duration-300">
           <span><FaPlus /></span> Ajoute au favoris
         </button>
       </div>

@@ -17,7 +17,7 @@ function Admin() {
     <>
       <Search />
 
-      <div className="flex space-x-2 border-b-2 border-[#f0cb9a] mb-4 mt-6">
+      <div className="flex text-sm md:text-lg space-x-1 md:space-x-2 border-b-2 border-[#f0cb9a] mb-4 mt-6">
         <button
           className={`tab-button ${
             activeTab === "oeuvres" ? "tab-active" : ""
@@ -63,23 +63,23 @@ function Admin() {
               ? "Événements"
               : "Artisans"
           }
-          role={true}
+          isAdmin={true}
         >
           {activeTab === "evenements" &&
             evenements.map((event) => (
-              <Card key={event.id} data={event} isAdmin={true} />
+              <Card key={event.id} data={event} isAdmin={true}  section="evenements"/>
             ))}
           {activeTab === "categories" &&
             categories.map((event) => (
-              <Card key={event.id} data={event} isAdmin={true} />
+              <Card key={event.id} data={event} isAdmin={true} section="categories"/>
             ))}
           {activeTab === "oeuvres" &&
             oeuvres.map((event) => (
-              <Card key={event.id} data={event} isAdmin={true} />
+              <Card key={event.id} data={event} isAdmin={true} section="oeuvres"/>
             ))}
           {activeTab === "artisans" &&
             artisans.map((event) => (
-              <Card key={event.id} data={event} isAdmin={true} />
+              <Card key={event.id} data={event} isAdmin={true} section="artisans" />
             ))}
         </Bartitre>
       </div>

@@ -1,40 +1,39 @@
 {
   "categories": [
     {
-      "id": 1,
+      "id": "1",
       "nom": "Gastronomie",
       "image": "src/assets/image1.jpg",
       "description": "Cuisine marocaine, plats traditionnels et pâtisseries"
     },
     {
-      "id": 2,
+      "id": "2",
       "nom": "Artisanat",
-      "image": "src/assets/image2.jpg",
+      "image": "blob:http://localhost:5173/ffede4bd-5203-483e-ab90-e08b7a2b088d",
       "description": "Objets artisanaux et savoir-faire traditionnels"
     },
     {
-      "id": 3,
+      "id": "3",
       "nom": "Habits",
       "image": "src/assets/image3.jpg",
       "description": "Caftans, djellabas et habits traditionnels"
     },
     {
-      "id": 4,
+      "id": "4",
       "nom": "Architecture",
       "image": "src/assets/image2.jpg",
       "description": "Monuments et bâtiments traditionnels marocains"
     },
     {
-      "id": 5,
+      "id": "5",
       "nom": "Musique & Danse",
       "image": "src/assets/image1.jpg",
       "description": "Musique gnawa, chaâbi et danses traditionnelles"
     }
   ],
-
   "oeuvres": [
     {
-      "id": 1,
+      "id": "1",
       "titre": "Couscous Royal",
       "description": "Plat traditionnel servi dans les grandes occasions",
       "image": "src/assets/image3.jpg",
@@ -42,7 +41,7 @@
       "categorieId": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "titre": "Tajine aux pruneaux",
       "description": "Spécialité de la cuisine marocaine",
       "image": "src/assets/image1.jpg",
@@ -50,7 +49,7 @@
       "categorieId": 4
     },
     {
-      "id": 3,
+      "id": "3",
       "titre": "Tapis berbère",
       "description": "Un tapis coloré typique de l’Atlas",
       "image": "src/assets/image2.jpg",
@@ -58,7 +57,7 @@
       "categorieId": 2
     },
     {
-      "id": 4,
+      "id": "4",
       "titre": "Caftan traditionnel",
       "description": "Caftan marocain brodé à la main",
       "image": "src/assets/image1.jpg",
@@ -66,7 +65,7 @@
       "categorieId": 3
     },
     {
-      "id": 5,
+      "id": "5",
       "titre": "Mosquée Hassan II",
       "description": "Chef-d'œuvre architectural de Casablanca",
       "image": "src/assets/image2.jpg",
@@ -74,58 +73,74 @@
       "categorieId": 4
     },
     {
-      "id": 6,
+      "id": "6",
       "titre": "Gnawa Music",
       "description": "Musique spirituelle et traditionnelle du Maroc",
       "image": "src/assets/image1.jpg",
       "ville": "Essaouira",
       "categorieId": 5
-    }
-  ],
-
-  "evenements": [
-    {
-      "id": 1,
-      "titre": "Festival du film de Marrakech",
-      "image": "src/assets/image2.jpg",
-      "date": "2025-12-05",
-      "ville": "Marrakech",
-      "description": "Musique spirituelle et traditionnelle du Maroc"
-    
     },
     {
-      "id": 2,
+      "id": "1b7a",
+      "titre": "zlclzk,kcdz",
+      "categorieId": 2,
+      "ville": "jzjdcjklzklzd",
+      "image": "https://res.cloudinary.com/dpbink4pt/image/upload/v1759011996/q87dh9c11vdgw0fcihmr.jpg"
+    },
+    {
+      "id": "1dab",
+      "titre": "mamamamamam",
+      "categorieId": 4,
+      "ville": "mamammmamama",
+      "image": "https://res.cloudinary.com/dpbink4pt/image/upload/v1759012398/b5sh8g2thujklr73c4ve.png"
+    },
+    {
+      "id": "50dc",
+      "titre": "HOOOLA",
+      "ville": "JLQDJFJQ",
+      "description": "JQLDJICEFCOQZEFUIOZIZSR",
+      "category": "peinture",
+      "image": "blob:http://localhost:5173/2aac88d2-4caa-4bb6-8b1b-fa2353c886dc"
+    }
+  ],
+  "evenements": [
+    {
+      "id": "2",
       "titre": "Festival Gnaoua et Musiques du Monde",
       "image": "src/assets/image1.jpg",
       "date": "2025-06-20",
       "ville": "Essaouira",
       "description": "Musique spirituelle et traditionnelle du Maroc"
-
     }
   ],
-
   "artisans": [
     {
-      "id": 1,
+      "id": "1",
       "nom": "Chaimaa Afkir",
-      "ville": "Casa",
+      "ville": "hqdhhquidui",
       "image": "src/assets/image2.jpg",
       "description": "Maître artisan spécialisé en poterie traditionnelle"
     },
     {
-      "id": 2,
+      "id": "2",
       "nom": "Latifa ouamou",
       "ville": "Ca,kdcsdefsa",
       "image": "src/assets/image1.jpg",
       "description": "Créatrice de bijoux en argent et pierres précieuses"
     },
     {
-      "id": 3,
+      "id": "3",
       "nom": "Khadija Bouheria",
       "ville": "sdchkskdhf",
       "image": "src/assets/image3.jpg",
       "description": "Fabricant de tapis berbères de l’Atlas"
+    },
+    {
+      "id": "e6df",
+      "nom": "zuiusuiaz hizshaq",
+      "ville": "uaqduuadoaz",
+      "description": "iduhaqdua",
+      "image": "blob:http://localhost:5173/6eee2982-b055-49f8-b72d-2364fc1c75e5"
     }
-  ],
-  "favoris" :[]
+  ]
 }

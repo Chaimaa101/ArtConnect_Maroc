@@ -64,7 +64,6 @@ export default function Apropos() {
           </div>
         </section>
 
-        {/* Notre histoire */}
         <section className="bg-white rounded-2xl shadow p-6 mb-6 border">
           <div className="flex gap-4 items-start">
             <FaHistory className="text-3xl text-[#895525] mt-1" />
@@ -79,7 +78,6 @@ export default function Apropos() {
           </div>
         </section>
 
-        {/* Nos valeurs */}
         <section className="mb-8">
           <h3 className="text-lg font-semibold text-[#763613] mb-4">Nos valeurs</h3>
 
@@ -109,8 +107,6 @@ export default function Apropos() {
             </div>
           </div>
         </section>
-
-       
       </div>
     </div>
   );

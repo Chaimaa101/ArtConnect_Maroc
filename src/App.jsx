@@ -16,8 +16,8 @@ function App() {
           <Route index element={<Home/>}/>
           <Route path="/admin" element={<Admin />}/>
           <Route path="/publier" element={<Publier />}/>
-          <Route path="/Admin" element={<Admin />}/>
-          <Route path="/About" element={<Apropos/>}/>
+          <Route path="/admin" element={<Admin />}/>
+          <Route path="/about" element={<Apropos/>}/>
           <Route path="/details/:type/:id" element={<Details/>}/>
            <Route path="/favoris" element={<Favoris/>}/>
         </Route>
