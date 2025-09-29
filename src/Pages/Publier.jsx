@@ -20,11 +20,15 @@ function PublierOeuvre() {
     }
 
     try {
-      await axios.post("http://localhost:3000/oeuvres", {
-        titre,
-        categorie,
-        region,
-        image: URL.createObjectURL(image), // preview en base
+      // إنشاء FormData
+      const formData = new FormData();
+      formData.append("titre", titre);
+      formData.append("categorie", categorie);
+      formData.append("region", region);
+      formData.append("image", image); // نبعث الفايل الأصلي
+
+      await axios.post("http://localhost:3000/oeuvres", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
       alert("Œuvre publiée avec succès !");
@@ -39,7 +43,7 @@ function PublierOeuvre() {
   };
 
   return (
-    <div className="flex justify-center items-center py-16  from-yellow-50 to-red-100 min-h-[calc(100vh-200px)]">
+    <div className="flex justify-center items-center py-16 from-yellow-50 to-red-100 min-h-[calc(100vh-200px)]">
       <form
         onSubmit={handleSubmit}
         className="bg-white shadow-xl rounded-2xl p-6 w-[400px] border"
@@ -110,3 +114,4 @@ function PublierOeuvre() {
 }
 
 export default PublierOeuvre;
+n

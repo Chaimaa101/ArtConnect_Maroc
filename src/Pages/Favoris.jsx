@@ -1,36 +1,51 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Favoris() {
-  const [favoris, setFavoris] = useState([
-    {
-      id: 1,
-      titre: "",
-      categorie: "Poterie",
-      image:
-        "https://images.unsplash.com/photo-1617196037327-5d83f1e85b2d?auto=format&fit=crop&w=400&q=80",
-    },
-    {
-      id: 2,
-      titre: "",
-      categorie: "Tapis",
-      image:
-        "https://images.unsplash.com/photo-1598966733535-91cce458b098?auto=format&fit=crop&w=400&q=80",
-    },
-    {
-      id: 3,
-      titre: "Ensemble",
-      categorie: "Bijoux",
-      image:
-         "src/assets/Bijoux.jpg"
-    },
-  ]);
+  const [favoris, setFavoris] = useState([]);
+
+  // Charger favoris depuis localStorage au démarrage
+  useEffect(() => {
+    const savedFavoris = localStorage.getItem("favoris");
+    if (savedFavoris) {
+      setFavoris(JSON.parse(savedFavoris));
+    } else {
+      // Valeurs initiales
+      setFavoris([
+        {
+          id: 1,
+          titre: "Vase",
+          categorie: "Poterie",
+          image:
+            "/assets/VASE.jpg",
+        },
+        {
+          id: 2,
+          titre: "Tapis berbère",
+          categorie: "Tapis",
+          image:
+            "/assets/tapis.jpg",
+        },
+        {
+          id: 3,
+          titre: "Ensemble",
+          categorie: "Bijoux",
+          image: "/assets/Bijoux.jpg", // ✅ mieux avec chemin public
+        },
+      ]);
+    }
+  }, []);
+
+  // Sauvegarder favoris à chaque modification
+  useEffect(() => {
+    localStorage.setItem("favoris", JSON.stringify(favoris));
+  }, [favoris]);
 
   const retirerFavori = (id) => {
     setFavoris(favoris.filter((item) => item.id !== id));
   };
 
   return (
-    <div className="py-12 px-6  min-h-screen">
+    <div className="py-12 px-6 min-h-screen">
       <h2 className="text-2xl font-bold text-red-700 mb-6">Vos favoris</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -48,10 +63,8 @@ function Favoris() {
 
             {/* Contenu */}
             <div className="p-4">
-              <h3 className="text-lg font-bold text-red-700">
-                {item.titre}
-              </h3>
-              <p className="text-gray-600 mb-3">{item.categorie} -</p>
+              <h3 className="text-lg font-bold text-red-700">{item.titre}</h3>
+              <p className="text-gray-600 mb-3">{item.categorie}</p>
 
               <button
                 onClick={() => retirerFavori(item.id)}
