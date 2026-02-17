@@ -4,7 +4,7 @@
 	<img
 		width="200"
 		alt="ArtConnect Maroc"
-		src="public/logo.png">
+		src="src/assets/logo.png">
 </h1>
 
 <h3 align="center">
@@ -173,3 +173,4 @@ Ouvrez votre navigateur
 ```text
 http://localhost:5173
 ```
+
